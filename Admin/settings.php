@@ -66,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <li><a href="#"><i class="fas fa-shopping-bag"></i> Orders</a></li>
         <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
         <li><a href="inventory.php"><i class="fas fa-boxes"></i> Inventory</a></li>
-        <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
         <li><a href="settings.php" class="active"><i class="fas fa-cog"></i> Settings</a></li>
     </ul>
     </aside>
@@ -92,69 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" name="update_account">Update Account</button>
         </div>
 
-        <!-- Store Preferences -->
-        <div class="section">
-        <h2>Store Preferences</h2>
-        <div class="form-group">
-            <label for="currency">Default Currency</label>
-            <select name="currency" id="currency">
-            <option value="usd" <?= $admin['currency'] == 'usd' ? 'selected' : '' ?>>USD ($)</option>
-            <option value="eur" <?= $admin['currency'] == 'eur' ? 'selected' : '' ?>>EUR (€)</option>
-            <option value="inr" <?= $admin['currency'] == 'inr' ? 'selected' : '' ?>>INR (₹)</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="timezone">Timezone</label>
-            <select name="timezone" id="timezone">
-            <option value="utc" <?= $admin['timezone'] == 'utc' ? 'selected' : '' ?>>UTC</option>
-            <option value="est" <?= $admin['timezone'] == 'est' ? 'selected' : '' ?>>EST</option>
-            <option value="ist" <?= $admin['timezone'] == 'ist' ? 'selected' : '' ?>>IST</option>
-            </select>
-        </div>
-        </div>
-
-        <!-- Notification Settings -->
-        <div class="section">
-        <h2>Notification Preferences</h2>
-        <div class="form-group checkbox">
-            <label><input type="checkbox" name="notifications" <?= $admin['notifications'] ? 'checked' : '' ?>> Enable Email Notifications</label>
-        </div>
-        </div>
-
-        <!-- UI Preferences -->
-        <div class="section">
-        <h2>UI Preferences</h2>
-        <div class="form-group checkbox">
-            <label><input type="checkbox" name="dark_mode" <?= $admin['dark_mode'] ? 'checked' : '' ?>> Enable Dark Mode</label>
-        </div>
-        </div>
-
-        <!-- Payment Settings -->
-        <div class="section">
-        <h2>Payment Settings</h2>
-        <div class="form-group">
-            <label for="payment_gateway">Preferred Payment Gateway</label>
-            <select name="payment_gateway" id="payment_gateway">
-            <option value="paypal" <?= $admin['payment_gateway'] == 'paypal' ? 'selected' : '' ?>>PayPal</option>
-            <option value="razorpay" <?= $admin['payment_gateway'] == 'razorpay' ? 'selected' : '' ?>>Razorpay</option>
-            <option value="stripe" <?= $admin['payment_gateway'] == 'stripe' ? 'selected' : '' ?>>Stripe</option>
-            </select>
-        </div>
-        </div>
-
-        <!-- Shipping Settings -->
-        <div class="section">
-        <h2>Shipping Settings</h2>
-        <div class="form-group">
-            <label for="shipping_zone">Shipping Zone</label>
-            <select name="shipping_zone" id="shipping_zone">
-            <option value="domestic" <?= $admin['shipping_zone'] == 'domestic' ? 'selected' : '' ?>>Domestic</option>
-            <option value="international" <?= $admin['shipping_zone'] == 'international' ? 'selected' : '' ?>>International</option>
-            </select>
-        </div>
-        </div>
-
-        <button type="submit" name="save_preferences">Save All Preferences</button>
     </form>
     </div>
 

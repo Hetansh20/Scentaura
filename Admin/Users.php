@@ -1,6 +1,10 @@
 <?php
 session_start();
 include '../db.php';
+if (!isset($_SESSION['user_id'])) {
+      header("Location: admin_login.php");
+      exit;
+  }
 
 // Fetch user data from the database
 $sql = "SELECT id, full_name, email, role FROM users";
@@ -41,7 +45,6 @@ $conn->close();
         <li><a href="#"><i class="fas fa-shopping-bag"></i> Orders</a></li>
         <li><a href="users.php" class="active"><i class="fas fa-users"></i> Users</a></li>
         <li><a href="inventory.php"><i class="fas fa-boxes"></i> Inventory</a></li>
-        <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
         <li><a href="settings.php"><i class="fas fa-cog"></i> Settings</a></li>
       </ul>
     </aside>

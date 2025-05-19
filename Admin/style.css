@@ -161,17 +161,28 @@ body {
 
 .quick-access button {
   background-color: #1d4ed8;
-  color: white;
-  padding: 10px 20px;
+  padding: 0;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
   transition: background-color 0.2s ease;
+}
+
+/* Fix the anchor inside the button */
+.quick-access button a {
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
 }
 
 .quick-access button:hover {
   background-color: #2563eb;
+}
+
+.quick-access button a:hover {
+  text-decoration: none;
 }
 
 /* Recent Activities */

@@ -1,5 +1,9 @@
 <?php
 include '../db.php';
+if (!isset($_SESSION['user_id'])) {
+      header("Location: admin_login.php");
+      exit;
+  }
 // Handle AJAX form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $product_id = $_POST['product_id'];
@@ -44,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
       <li><a href="#"><i class="fas fa-shopping-bag"></i> Orders</a></li>
       <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
       <li><a href="inventory.php"><i class="fas fa-boxes"></i> Inventory</a></li>
-      <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
       <li><a href="settings.php"><i class="fas fa-cog"></i> Settings</a></li>
     </ul>
   </aside>

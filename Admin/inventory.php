@@ -1,5 +1,9 @@
 <?php
 include '../db.php';
+if (!isset($_SESSION['user_id'])) {
+      header("Location: admin_login.php");
+      exit;
+  }
 
 $query = "SELECT * FROM products"; // assuming table name is 'products'
 $result = mysqli_query($conn, $query);
@@ -27,7 +31,6 @@ $result = mysqli_query($conn, $query);
         <li><a href="brand.php"><i class="fas fa-spray-can"></i>Brand</a></li>
         <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
         <li><a href="inventory.php" class="active"><i class="fas fa-boxes"></i> Inventory</a></li>
-        <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
         <li><a href="settings.php"><i class="fas fa-cog"></i> Settings</a></li>
       </ul>
     </aside>
