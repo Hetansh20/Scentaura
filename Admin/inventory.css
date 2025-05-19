@@ -1,0 +1,76 @@
+/* Layout for main content */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f1f5f9;
+}
+
+/* Main content wrapper (excluding sidebar) */
+.main-content {
+  margin-left: 250px; /* adjust based on your sidebar width */
+  padding: 30px;
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 25px;
+}
+
+/* Inventory table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+th {
+  background-color: #1e40af;
+  color: white;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+td {
+  color: #374151;
+}
+
+tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Responsive image */
+td img {
+  height: 60px;
+  width: auto;
+  border-radius: 4px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+}

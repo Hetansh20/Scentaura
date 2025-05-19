@@ -1,0 +1,110 @@
+/* General Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 40px;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1E40AF;
+}
+
+/* Button Styling */
+.btn {
+  background-color: #1E40AF;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #3b82f6;
+}
+
+/* Form Styling */
+.form {
+  display: none;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 30px auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1F2937;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #f9fafb;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #1E40AF;
+  outline: none;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background-color: #1E40AF;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+td {
+  color: #374151;
+}
+
+/* Action Links */
+td.action-btns a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+td.action-btns a:hover {
+  text-decoration: underline;
+  color: #1d4ed8;
+}

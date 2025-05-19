@@ -1,0 +1,203 @@
+/* Main Cart Styles - Black & White Theme */
+/* General Page Styles */
+body {
+  background-color: #fff;
+  color: #000;
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+/* Cart Container */
+.cart-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 40px;
+}
+/* Cart Title */
+.cart-container h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #000;
+  letter-spacing: 0.5px;
+}
+/* Cart Items */
+.cart-item {
+  display: flex;
+  padding: 30px 0;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+.cart-item img {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+  margin-right: 60px;
+}
+.cart-item .details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* Product Title */
+.cart-item h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #000;
+}
+/* Price Display */
+.cart-item p {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+/* Quantity Controls */
+.quantity-form {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+.quantity-form label {
+  margin-right: 8px;
+  font-weight: 500;
+}
+.quantity-form input[type="number"] {
+  width: 80px;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+.quantity-form button {
+  padding: 8px 15px;
+  margin-left: 10px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.quantity-form button:hover {
+  background-color: #000;
+  color: #fff;
+}
+/* Remove Button */
+.remove-form button {
+  padding: 8px 15px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.remove-form button:hover {
+  background-color: #000;
+  color: #fff;
+}
+/* Subtotal Text */
+.subtotal {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+/* Cart Total Section */
+.cart-total {
+  margin-top: 40px;
+  text-align: right;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+}
+.cart-total h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+/* Checkout Button */
+.checkout-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.2s ease;
+}
+.checkout-btn:hover {
+  background-color: #333;
+}
+/* Empty Cart Message */
+.cart-container > p {
+  text-align: center;
+  font-size: 18px;
+  margin: 80px 0;
+  color: #666;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+  .cart-item img {
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 140px;
+  }
+
+  .cart-item .details {
+    width: 100%;
+    text-align: center;
+  }
+
+  .quantity-form {
+    justify-content: center;
+  }
+
+  .subtotal {
+    text-align: center;
+  }
+
+  .cart-total {
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  .cart-container {
+    padding: 0 20px;
+  }
+  .cart-item h3 {
+    font-size: 20px;
+  }
+
+  .quantity-form {
+    flex-wrap: wrap;
+  }
+
+  .quantity-form input[type="number"] {
+    width: 60px;
+  }
+
+  .quantity-form button {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .remove-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}

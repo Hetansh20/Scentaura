@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #fff;
+  color: #000;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Typography */
+h1 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: #000;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+th {
+  padding: 1rem;
+  border-bottom: 2px solid #000;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Total price */
+.total {
+  text-align: right;
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+  font-weight: 500;
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Checkout button */
+#checkout-button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 2rem auto 0;
+  padding: 1rem;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #000;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#checkout-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+#checkout-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 1.7rem;
+  }
+  
+  table {
+    font-size: 0.9rem;
+  }
+  
+  th, td {
+    padding: 0.8rem 0.5rem;
+  }
+  
+  /* Simplified table on mobile */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  tr {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+  }
+  
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+  
+  td:before {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.5rem;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+    content: attr(data-label);
+  }
+  
+  /* Custom attributes needed for mobile */
+  td:nth-of-type(1):before { content: "Product"; }
+  td:nth-of-type(2):before { content: "Quantity"; }
+  td:nth-of-type(3):before { content: "Price"; }
+  td:nth-of-type(4):before { content: "Subtotal"; }
+  
+  .total {
+    text-align: center;
+  }
+}
