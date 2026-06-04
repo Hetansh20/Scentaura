@@ -123,12 +123,12 @@ use PHPMailer\PHPMailer\Exception;
 $mail = new PHPMailer(true);
 try {
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
+    $mail->Host = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'scentaura25@gmail.com';
-    $mail->Password = 'ekcl ptfi fdal ujkz';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = 587;
+    $mail->Username = getenv('SMTP_USER') ?: 'scentaura25@gmail.com';
+    $mail->Password = getenv('SMTP_PASS') ?: 'ekcl ptfi fdal ujkz';
+    $mail->SMTPSecure = getenv('SMTP_SECURE') === 'ssl' ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = getenv('SMTP_PORT') ?: 587;
 
     // User email
     $mail->setFrom('scentaura25@gmail.com', 'ScentAura');

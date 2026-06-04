@@ -32,4 +32,18 @@ $conn = new mysqli($host, $user, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+// Automatically create the password_resets table if it doesn't exist
+$createResetsTable = "CREATE TABLE IF NOT EXISTS `password_resets` (
+    `email` varchar(255) NOT NULL,
+    `token` varchar(255) NOT NULL,
+    `expires_at` datetime NOT NULL,
+    PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+$conn->query($createResetsTable);
+
+// Ensure $_SESSION is initialized as an array if session_start() has been called
+if (session_status() === PHP_SESSION_ACTIVE && (!isset($_SESSION) || !is_array($_SESSION))) {
+    $_SESSION = array();
+}
 ?>

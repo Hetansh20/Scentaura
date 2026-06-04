@@ -245,6 +245,8 @@ A comprehensive structural audit of the project files.
 | `contact.php` | Simple support portal exposing physical contact details and an interactive feedback box. |
 | `login.php` | Unified gateway for user login and signup. Validates credentials securely using `password_hash()` and `password_verify()`. |
 | `logout.php` | Clears all active variables and destroys the session, redirecting to the homepage. |
+| `forgot_password.php` | Password reset request portal. Validates email, creates secure single-use tokens, stores them with an expiration limit, and mails the reset link via PHPMailer. |
+| `reset_password.php` | Password reset verification and update processor. Confirms token validity and expiration window, securely hashes the new password, updates database records, and deletes token. |
 | `db.php` | Database connection script. Houses the lightweight parser that extracts local environment variables from `.env` and establishes a global `$conn` via the MySQLi driver. |
 
 ### Shared Components & Assets (`/components`)
