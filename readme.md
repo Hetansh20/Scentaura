@@ -431,12 +431,11 @@ Navigate to your GitHub Repository -> **Settings** -> **Secrets and variables** 
 3. **Task Definition:** Create a task definition named `scentaura-task` containing:
    - A container named `scentaura-app`.
    - Ports mapping `80` inside the container to `80` (or dynamic host ports).
-   - Injected Environment variables (mapping database configurations to your RDS endpoint):
-     * `DB_HOST`: Address of your RDS MySQL endpoint.
-     * `DB_USER`: Master database username.
-     * `DB_PASSWORD`: Master database password.
-     * `DB_NAME`: `scentaura`
-     * `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, `SMTP_HOST`, `SMTP_PASS`, etc.
+   - Injected Environment variables (mapping DB and SMTP configs to AWS):
+     * **Database:** `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`
+     * **Stripe:** `STRIPE_PUBLISHABLE_KEY`, `STRIPE_SECRET_KEY`
+     * **SMTP:** `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (raw string, no quotes), `SMTP_SECURE`
+   - *Note: Since `.env` is ignored by git, these variables MUST be set manually in the AWS ECS Task Definition.*
 4. **ECS Service:** Create a service named `scentaura-service` inside the cluster to manage and scale the tasks.
 
 #### 4. Trigger Deployment
@@ -448,9 +447,10 @@ git push origin main
 ```
 The workflow will:
 1. Compile the image: `docker build -t scentaura-app .`
-2. Tag the build: `docker tag scentaura-app:latest 976497228635.dkr.ecr.ap-south-1.amazonaws.com/scentaura:latest`
+2. Tag the build uniquely: `docker tag scentaura-app:latest .../scentaura:${{ github.sha }}`
 3. Push to ECR.
-4. Issue a deployment signal: `aws ecs update-service --cluster scentaura-cluster --service scentaura-service --task-definition scentaura-task:3 --force-new-deployment`
+4. Prevent deadlocks: `aws ecs update-service --deployment-configuration "minimumHealthyPercent=0,maximumPercent=200"`
+5. Render and deploy the new Task Definition dynamically.
 5. **Run a Smoke Test**: Performs curl checks to confirm the server returns status code `200` on key routes:
    - Base URL (`http://13.203.156.238`)
    - Products page (`/products.php`)
