@@ -45,7 +45,7 @@ jobs:
           aws ecs update-service \
             --cluster scentaura-cluster \
             --service scentaura-service \
-            --deployment-configuration "minimumHealthyPercent=0,maximumPercent=100" \
+            --deployment-configuration "minimumHealthyPercent=0,maximumPercent=200" \
             --region ap-south-1
 
       - name: Deploy to ECS
