@@ -1,0 +1,77 @@
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Playfair Display', serif;
+}
+.faq, .contact-form, .visit-us {
+    background: #f9f9f9;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+.faq h2, .contact-form h2, .visit-us h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #000;
+}
+.faq-item, .visit-us p {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+}
+.faq-item h3 {
+    font-size: 22px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background: #fff;
+    color: #000;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #000;
+}
+.contact-form button {
+    background: #000;
+    color: #fff;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+.contact-form button:hover {
+    background: #4c4c4c;
+    color: #fff;
+    transform: translateY(-5px);
+    transition: 0.3s ease-in-out;
+}
+.visit-us p i {
+    color: #000000;
+}
+.visit-us p {
+    font-size: 18px;
+    font-weight: 500;
+}
+.faq-item:hover, .visit-us:hover {
+    transform: translateY(-5px);
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}

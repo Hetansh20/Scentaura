@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f6f8;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+/* Google Font (use this in your HTML head) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+/* Global Font */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f8fafc;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background-color: #1e3a8a;
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+/* Logo area */
+.sidebar-logo {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.sidebar-logo img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.sidebar-logo h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Nav links */
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin-bottom: 6px;
+}
+
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links li a.active {
+  background-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  border-left: 4px solid #ffffff;
+}
+
+.nav-links li a i {
+  margin-right: 14px;
+  font-size: 18px;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 260px;
+  padding: 40px;
+  background-color: #f1f5f9;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #1e3a8a;
+}
+
+/* Table Styling */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-table th,
+.user-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #e0e7ff;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.user-table td {
+  color: #374151;
+}
+
+.user-table tr:last-child td {
+  border-bottom: none;
+}

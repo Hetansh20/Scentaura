@@ -1,0 +1,86 @@
+/* General Reset for overflow */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* General Main Content Area */
+.main-content {
+  margin-left: 150px; /* match your sidebar width */
+  padding: 2rem;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: calc(100% - 150px); /* prevent horizontal overflow */
+  box-sizing: border-box;
+}
+
+/* Form Container */
+.featured-form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-sizing: border-box;
+}
+
+/* Labels */
+.featured-form label {
+  font-weight: 600;
+  color: #333333;
+}
+
+/* Inputs, Textarea, Select */
+.featured-form input[type="text"],
+.featured-form input[type="number"],
+.featured-form input[type="file"],
+.featured-form textarea,
+.featured-form select {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border 0.3s;
+  background-color: #fefefe;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.featured-form input:focus,
+.featured-form textarea:focus,
+.featured-form select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* Submit Button */
+.featured-form button[type="submit"] {
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.featured-form button[type="submit"]:hover {
+  background-color: #3b7bc1;
+}
+
+/* Heading */
+.main-content h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
