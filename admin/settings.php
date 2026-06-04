@@ -97,6 +97,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" name="update_account">Update Account</button>
         </div>
 
+        <!-- System Preferences -->
+        <div class="section">
+        <h2>System Preferences</h2>
+        <div class="form-group">
+            <label for="currency">Currency</label>
+            <select name="currency" id="currency">
+                <option value="usd" <?= (isset($admin['currency']) && $admin['currency'] == 'usd') ? 'selected' : '' ?>>USD ($)</option>
+                <option value="eur" <?= (isset($admin['currency']) && $admin['currency'] == 'eur') ? 'selected' : '' ?>>EUR (€)</option>
+                <option value="gbp" <?= (isset($admin['currency']) && $admin['currency'] == 'gbp') ? 'selected' : '' ?>>GBP (£)</option>
+                <option value="inr" <?= (isset($admin['currency']) && $admin['currency'] == 'inr') ? 'selected' : '' ?>>INR (₹)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="timezone">Timezone</label>
+            <select name="timezone" id="timezone">
+                <option value="utc" <?= (isset($admin['timezone']) && $admin['timezone'] == 'utc') ? 'selected' : '' ?>>UTC</option>
+                <option value="est" <?= (isset($admin['timezone']) && $admin['timezone'] == 'est') ? 'selected' : '' ?>>EST</option>
+                <option value="pst" <?= (isset($admin['timezone']) && $admin['timezone'] == 'pst') ? 'selected' : '' ?>>PST</option>
+                <option value="ist" <?= (isset($admin['timezone']) && $admin['timezone'] == 'ist') ? 'selected' : '' ?>>IST</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="payment_gateway">Payment Gateway</label>
+            <select name="payment_gateway" id="payment_gateway">
+                <option value="paypal" <?= (isset($admin['payment_gateway']) && $admin['payment_gateway'] == 'paypal') ? 'selected' : '' ?>>PayPal</option>
+                <option value="stripe" <?= (isset($admin['payment_gateway']) && $admin['payment_gateway'] == 'stripe') ? 'selected' : '' ?>>Stripe</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="shipping_zone">Shipping Zone</label>
+            <select name="shipping_zone" id="shipping_zone">
+                <option value="domestic" <?= (isset($admin['shipping_zone']) && $admin['shipping_zone'] == 'domestic') ? 'selected' : '' ?>>Domestic</option>
+                <option value="international" <?= (isset($admin['shipping_zone']) && $admin['shipping_zone'] == 'international') ? 'selected' : '' ?>>International</option>
+            </select>
+        </div>
+        <div class="form-group-checkbox" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+            <input type="checkbox" name="notifications" id="notifications" value="1" <?= (isset($admin['notifications']) && $admin['notifications'] == 1) ? 'checked' : '' ?>>
+            <label for="notifications" style="margin-bottom: 0;">Enable Notifications</label>
+        </div>
+        <div class="form-group-checkbox" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+            <input type="checkbox" name="dark_mode" id="dark_mode" value="1" <?= (isset($admin['dark_mode']) && $admin['dark_mode'] == 1) ? 'checked' : '' ?>>
+            <label for="dark_mode" style="margin-bottom: 0;">Enable Dark Mode</label>
+        </div>
+        <button type="submit" name="save_preferences">Save Preferences</button>
+        </div>
+
     </form>
     </div>
 
