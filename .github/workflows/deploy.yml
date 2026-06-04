@@ -40,6 +40,14 @@ jobs:
           container-name: scentaura-app
           image: 976497228635.dkr.ecr.ap-south-1.amazonaws.com/scentaura:${{ github.sha }}
 
+      - name: Fix Deployment Deadlock
+        run: |
+          aws ecs update-service \
+            --cluster scentaura-cluster \
+            --service scentaura-service \
+            --deployment-configuration "minimumHealthyPercent=0,maximumPercent=100" \
+            --region ap-south-1
+
       - name: Deploy to ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
