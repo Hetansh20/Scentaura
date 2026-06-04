@@ -477,3 +477,4 @@ Make sure to never commit credential variables directly into PHP scripts. Always
 
 ## 👥 Contributors
 Developed with passion by the **ScentAura Dev Team**. For support, issues, or inquiries, reach out to `scentaura25@gmail.com`.
+
