@@ -123,15 +123,15 @@ use PHPMailer\PHPMailer\Exception;
 $mail = new PHPMailer(true);
 try {
     $mail->isSMTP();
-    $mail->Host = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
+    $mail->Host = getenv('SMTP_HOST');
     $mail->SMTPAuth = true;
-    $mail->Username = getenv('SMTP_USER') ?: 'scentaura25@gmail.com';
-    $mail->Password = getenv('SMTP_PASS') ?: 'ekcl ptfi fdal ujkz';
+    $mail->Username = getenv('SMTP_USER');
+    $mail->Password = getenv('SMTP_PASS');
     $mail->SMTPSecure = getenv('SMTP_SECURE') === 'ssl' ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = getenv('SMTP_PORT') ?: 587;
 
     // User email
-    $mail->setFrom('scentaura25@gmail.com', 'ScentAura');
+    $mail->setFrom(getenv('SMTP_USER'), 'ScentAura');
     $mail->addAddress($user_email, $username);
     $mail->Subject = "Order Confirmation #$order_id";
     $mail->Body = "Dear $username,\n\nThank you for your order! Please find your invoice attached.\n\nRegards,\nScentAura Team";
@@ -140,7 +140,7 @@ try {
 
     // Admin email
     $mail->clearAddresses();
-    $mail->addAddress('scentaura25@gmail.com', 'ScentAura Admin');
+    $mail->addAddress(getenv('SMTP_USER'), 'ScentAura Admin');
     $mail->Subject = "New Order Received #$order_id";
     $mail->Body = "A new order has been placed by $username.\nOrder ID: $order_id\nTotal: $" . number_format($total_amount,2);
     $mail->addAttachment($invoice_file);

@@ -20,15 +20,15 @@
             try {
                 // Admin Mail
                 $adminMailer->isSMTP();
-                $adminMailer->Host = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
+                $adminMailer->Host = getenv('SMTP_HOST');
                 $adminMailer->SMTPAuth = true;
-                $adminMailer->Username = getenv('SMTP_USER') ?: 'scentaura25@gmail.com';
-                $adminMailer->Password = getenv('SMTP_PASS') ?: 'ekcl ptfi fdal ujkz';
+                $adminMailer->Username = getenv('SMTP_USER');
+                $adminMailer->Password = getenv('SMTP_PASS');
                 $adminMailer->SMTPSecure = getenv('SMTP_SECURE') === 'ssl' ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
                 $adminMailer->Port = getenv('SMTP_PORT') ?: 587;
                 $adminMailer->isHTML(true);
-                $adminMailer->setFrom(getenv('SMTP_USER') ?: 'scentaura25@gmail.com', 'ScentAura');
-                $adminMailer->addAddress('scentaura25@gmail.com');
+                $adminMailer->setFrom(getenv('SMTP_USER'), 'ScentAura');
+                $adminMailer->addAddress(getenv('SMTP_USER'));
                 $adminMailer->Subject = "New Contact Form Submission";
                 $adminMailer->Body = "
                     <h3>New Contact Message</h3>
@@ -39,14 +39,14 @@
 
                 // User Confirmation Mail
                 $userMailer->isSMTP();
-                $userMailer->Host = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
+                $userMailer->Host = getenv('SMTP_HOST');
                 $userMailer->SMTPAuth = true;
-                $userMailer->Username = getenv('SMTP_USER') ?: 'scentaura25@gmail.com';
-                $userMailer->Password = getenv('SMTP_PASS') ?: 'ekcl ptfi fdal ujkz';
+                $userMailer->Username = getenv('SMTP_USER');
+                $userMailer->Password = getenv('SMTP_PASS');
                 $userMailer->SMTPSecure = getenv('SMTP_SECURE') === 'ssl' ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
                 $userMailer->Port = getenv('SMTP_PORT') ?: 587;
                 $userMailer->isHTML(true);
-                $userMailer->setFrom(getenv('SMTP_USER') ?: 'scentaura25@gmail.com', 'ScentAura');
+                $userMailer->setFrom(getenv('SMTP_USER'), 'ScentAura');
                 $userMailer->addAddress($email);
                 $userMailer->Subject = "Thanks for contacting ScentAura!";
                 $userMailer->Body = "

@@ -42,15 +42,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['request_reset'])) {
                 try {
                     // SMTP configuration
                     $mail->isSMTP();
-                    $mail->Host = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
+                    $mail->Host = getenv('SMTP_HOST');
                     $mail->SMTPAuth = true;
-                    $mail->Username = getenv('SMTP_USER') ?: 'scentaura25@gmail.com';
-                    $mail->Password = getenv('SMTP_PASS') ?: 'ekcl ptfi fdal ujkz';
+                    $mail->Username = getenv('SMTP_USER');
+                    $mail->Password = getenv('SMTP_PASS');
                     $mail->SMTPSecure = getenv('SMTP_SECURE') === 'ssl' ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
                     $mail->Port = getenv('SMTP_PORT') ?: 587;
 
                     $mail->isHTML(true);
-                    $mail->setFrom(getenv('SMTP_USER') ?: 'scentaura25@gmail.com', 'ScentAura');
+                    $mail->setFrom(getenv('SMTP_USER'), 'ScentAura');
                     $mail->addAddress($email);
                     $mail->Subject = "Reset Your ScentAura Password";
 
