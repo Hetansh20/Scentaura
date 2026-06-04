@@ -404,6 +404,7 @@ graph LR
     Build --> ECR[5. Push Image to ECR Repository]
     ECR --> ECS[6. ECS Task Definition Update & Service Refresh]
     ECS --> Task[7. Spin Up New Tasks & Drain Old Containers]
+    Task --> Test[8. Smoke Test Key URLs on Base IP]
 ```
 
 ---
@@ -448,6 +449,13 @@ The workflow will:
 2. Tag the build: `docker tag scentaura-app:latest 976497228635.dkr.ecr.ap-south-1.amazonaws.com/scentaura:latest`
 3. Push to ECR.
 4. Issue a deployment signal: `aws ecs update-service --cluster scentaura-cluster --service scentaura-service --task-definition scentaura-task:3 --force-new-deployment`
+5. **Run a Smoke Test**: Performs curl checks to confirm the server returns status code `200` on key routes:
+   - Base URL (`http://13.203.156.238`)
+   - Products page (`/products.php`)
+   - Login page (`/login.php`)
+   - Blog page (`/blog.php`)
+   - About page (`/about.php`)
+   - Contact page (`/contact.php`)
 
 ---
 
