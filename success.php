@@ -122,6 +122,14 @@ use PHPMailer\PHPMailer\Exception;
 
 $mail = new PHPMailer(true);
 try {
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'scentaura25@gmail.com';
+    $mail->Password = 'ekcl ptfi fdal ujkz';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
     // User email
     $mail->setFrom('scentaura25@gmail.com', 'ScentAura');
     $mail->addAddress($user_email, $username);
