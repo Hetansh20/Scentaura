@@ -36,3 +36,25 @@ jobs:
             --task-definition scentaura-task:3 \
             --force-new-deployment \
             --region ap-south-1
+      
+      - name: Smoke Test
+        run: |
+          BASE_URL="http://13.203.156.238"
+
+          check_url() {
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$1")
+            if [ "$STATUS" != "200" ]; then
+              echo "FAIL: $1 returned $STATUS"
+              exit 1
+            else
+              echo "PASS: $1 returned $STATUS"
+            fi
+          }
+
+          check_url "$BASE_URL"
+          check_url "$BASE_URL/products.php"
+          check_url "$BASE_URL/login.php"
+          check_url "$BASE_URL/cart.php"
+          check_url "$BASE_URL/blog.php"
+          check_url "$BASE_URL/about.php"
+          check_url "$BASE_URL/contact.php"
