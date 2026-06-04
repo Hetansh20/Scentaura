@@ -214,10 +214,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
                 $user_id_row = mysqli_fetch_assoc($user_id_res);
                 $user_id_val = $user_id_row['id'];
 
-                $query = "SELECT COUNT(*) as total FROM cart WHERE user_id = $user_id_val";
-                $result = mysqli_query($conn, $query);
-                $row = mysqli_fetch_assoc($result);
-                echo $row['total'];
+                $cart_query = "SELECT COUNT(*) as total FROM cart WHERE user_id = $user_id_val";
+                $cart_result = mysqli_query($conn, $cart_query);
+                $cart_row = mysqli_fetch_assoc($cart_result);
+                echo $cart_row['total'];
             } else {
                 echo "0";
             }
