@@ -112,12 +112,22 @@ $priceQuery = "SELECT MIN(price) as min_price, MAX(price) as max_price FROM prod
 $priceResult = mysqli_query($conn, $priceQuery);
 $priceRange = mysqli_fetch_assoc($priceResult);
 
-$user_id = "Select id from users where full_name = '$_SESSION[username]'";
-$user_id_res = mysqli_query($conn, $user_id);
-$user_id_row = mysqli_fetch_assoc($user_id_res);
-// echo $user_id_row['id'];
+$user_id_row = ['id' => null];
+if (isset($_SESSION['username'])) {
+    $username_escaped = mysqli_real_escape_string($conn, $_SESSION['username']);
+    $user_id_query = "SELECT id FROM users WHERE full_name = '$username_escaped'";
+    $user_id_res = mysqli_query($conn, $user_id_query);
+    if ($user_id_res && mysqli_num_rows($user_id_res) > 0) {
+        $user_id_row = mysqli_fetch_assoc($user_id_res);
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
+    if (empty($user_id_row['id'])) {
+        header("Location: login.php");
+        exit();
+    }
+    
     $product_id = intval($_POST['product_id']);
     $quantity = max(1, intval($_POST['quantity'] ?? 1));
 
