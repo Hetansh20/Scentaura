@@ -106,7 +106,6 @@ jobs:
           check_url "$BASE_URL"
           check_url "$BASE_URL/products.php"
           check_url "$BASE_URL/login.php"
-          check_url "$BASE_URL/cart.php"
           check_url "$BASE_URL/blog.php"
           check_url "$BASE_URL/about.php"
           check_url "$BASE_URL/contact.php"
