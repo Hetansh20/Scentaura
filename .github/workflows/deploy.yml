@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -89,7 +89,7 @@ jobs:
           cluster: scentaura-cluster
           wait-for-service-stability: false
 
-      - name: Smoke Test
+      - name: Smoke tests
         run: |
           BASE_URL="http://13.203.156.238"
 
