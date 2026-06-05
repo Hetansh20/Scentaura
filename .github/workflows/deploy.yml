@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -58,22 +58,38 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t scentaura-app .
-          docker tag scentaura-app:latest 976497228635.dkr.ecr.ap-south-1.amazonaws.com/scentaura:latest
-          docker push 976497228635.dkr.ecr.ap-south-1.amazonaws.com/scentaura:latest
+          docker tag scentaura-app:latest 976497228635.dkr.ecr.ap-south-1.amazonaws.com/scentaura:${{ github.sha }}
+          docker push 976497228635.dkr.ecr.ap-south-1.amazonaws.com/scentaura:${{ github.sha }}
 
-      - name: Deploy to ECS
+      - name: Download task definition
+        run: |
+          aws ecs describe-task-definition --task-definition scentaura-task --query taskDefinition > task-definition.json
+
+      - name: Render new task definition
+        id: render-task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: scentaura-app
+          image: 976497228635.dkr.ecr.ap-south-1.amazonaws.com/scentaura:${{ github.sha }}
+
+      - name: Fix Deployment Deadlock
         run: |
           aws ecs update-service \
             --cluster scentaura-cluster \
             --service scentaura-service \
-            --task-definition scentaura-task:3 \
-            --force-new-deployment \
+            --deployment-configuration "minimumHealthyPercent=0,maximumPercent=200" \
             --region ap-south-1
 
-      - name: Wait for ECS to stabilize
-        run: sleep 60
+      - name: Deploy to ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-task-def.outputs.task-definition }}
+          service: scentaura-service
+          cluster: scentaura-cluster
+          wait-for-service-stability: false
 
-      - name: Smoke tests
+      - name: Smoke Test
         run: |
           BASE_URL="http://13.203.156.238"
 
