@@ -49,6 +49,31 @@ if ($result && $result->num_rows > 0) {
 $stripe_secret_key = getenv('STRIPE_SECRET_KEY') ?: '';
 \Stripe\Stripe::setApiKey($stripe_secret_key); // Loaded from env
 
+// Apply promo code discount if valid
+$discount_amount_cents = 0;
+if (isset($_SESSION['promo_code']) && $total_price_cents >= ($_SESSION['min_purchase'] * 100)) {
+    if ($_SESSION['discount_type'] == 'percentage') {
+        $discount_amount_cents = round($total_price_cents * ($_SESSION['discount_value'] / 100));
+    } else {
+        $discount_amount_cents = round($_SESSION['discount_value'] * 100);
+    }
+}
+
+// Adjust line items dynamically so Stripe accepts the discounted total
+if ($discount_amount_cents > 0 && $discount_amount_cents < $total_price_cents) {
+    foreach ($cart_items as &$item) {
+        $proportion = $item['total_cents'] / $total_price_cents;
+        $item_discount = round($discount_amount_cents * $proportion);
+        // Distribute discount into the unit price
+        $item['price_cents'] = max(0, $item['price_cents'] - round($item_discount / $item['quantity']));
+        $item['total_cents'] = $item['price_cents'] * $item['quantity'];
+    }
+    unset($item);
+    
+    // Recalculate total to ensure it matches exactly due to rounding
+    $total_price_cents = array_sum(array_column($cart_items, 'total_cents'));
+}
+
 // Create Stripe Checkout Session with line items from cart
 $line_items = [];
 foreach ($cart_items as $item) {
@@ -56,7 +81,7 @@ foreach ($cart_items as $item) {
         'price_data' => [
             'currency' => 'usd',
             'product_data' => [
-                'name' => $item['name'],
+                'name' => $item['name'] . (isset($_SESSION['promo_code']) ? " (Discounted)" : ""),
             ],
             'unit_amount' => $item['price_cents'],
         ],
