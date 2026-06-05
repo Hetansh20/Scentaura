@@ -48,9 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_coupon'])) {
         $_SESSION['discount_type'] = $coupon['discount_type'];
         $_SESSION['discount_value'] = floatval($coupon['discount_value']);
         $_SESSION['min_purchase'] = floatval($coupon['min_purchase']);
-        $discount_msg = "<div style='color: green; font-weight: bold; padding: 10px; background: #e8f5e9; border-radius: 5px; text-align:center;'>Coupon '{$coupon['code']}' applied successfully!</div>";
+        $discount_msg = "<div class='promo-msg success'>Coupon '{$coupon['code']}' applied successfully!</div>";
     } else {
-        $discount_msg = "<div style='color: red; font-weight: bold; padding: 10px; background: #ffebee; border-radius: 5px; text-align:center;'>Invalid or expired promo code.</div>";
+        $discount_msg = "<div class='promo-msg error'>Invalid or expired promo code.</div>";
         unset($_SESSION['promo_code'], $_SESSION['discount_type'], $_SESSION['discount_value'], $_SESSION['min_purchase']);
     }
 }
@@ -178,22 +178,22 @@ if ($count_result && $count_row = $count_result->fetch_assoc()) {
                         $discount_amount = $_SESSION['discount_value'];
                     }
                     $total_price -= $discount_amount;
-                    echo "<p style='color: green; font-weight: bold;'>Discount Applied: -$" . number_format($discount_amount, 2) . "</p>";
-                    echo "<h2>New Total: $" . number_format(max(0, $total_price), 2) . "</h2>";
+                    echo "<p class='discount-applied'>Discount Applied: -$" . number_format($discount_amount, 2) . "</p>";
+                    echo "<h2 class='new-total'>New Total: $" . number_format(max(0, $total_price), 2) . "</h2>";
                 } else {
-                    echo "<p style='color: orange;'>Promo code requires min purchase of $" . $_SESSION['min_purchase'] . "</p>";
+                    echo "<p class='promo-error'>Promo code requires min purchase of $" . $_SESSION['min_purchase'] . "</p>";
                     unset($_SESSION['promo_code'], $_SESSION['discount_type'], $_SESSION['discount_value'], $_SESSION['min_purchase']);
                 }
             }
             ?>
             
-            <form method="POST" style="margin: 20px 0; display: flex; gap: 10px; justify-content: flex-end;">
-                <input type="text" name="promo_code" placeholder="Promo Code" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                <button type="submit" name="apply_coupon" style="background: #000; color: #fff; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Apply</button>
+            <form method="POST" class="promo-form">
+                <input type="text" name="promo_code" placeholder="Promo Code">
+                <button type="submit" name="apply_coupon">Apply</button>
             </form>
             <?= $discount_msg ?? '' ?>
             
-            <a href="checkout.php" class="checkout-btn" style="display: inline-block; margin-top: 15px;">Proceed to Checkout</a>
+            <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
         </div>
     <?php else: ?>
         <p>No items in cart.</p>

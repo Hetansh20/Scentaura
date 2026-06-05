@@ -213,6 +213,16 @@ erDiagram
         int product_id FK
         timestamp created_at
     }
+    COUPONS {
+        int id PK
+        varchar code UK
+        enum discount_type
+        decimal discount_value
+        decimal min_purchase
+        datetime valid_until
+        tinyint is_active
+        timestamp created_at
+    }
 
     BRANDS ||--o{ PRODUCTS : "curates"
     USERS ||--o{ CART : "adds"
@@ -234,10 +244,11 @@ A comprehensive structural audit of the project files.
 | File Name | Description |
 | :--- | :--- |
 | `index.php` | The main landing page. Highlights brand introductions, a carousel/testimonials slider, promotional sections, and handles newsletter subscription and contact form submissions directly, notifying administrators and users via PHPMailer. |
+| `finder.php` | The interactive Fragrance Finder. A beautifully animated 3-step quiz that analyzes the user's personality, season, and occasion preferences to recommend their perfect signature scent. |
 | `products.php` | The catalog browser. Incorporates client-side and server-side filtering by gender, scent categories, price ranges, and searches the active database dynamically. |
 | `product_des.php` | Detailed product showcase. Renders the product notes hierarchy (head, heart, base), size configurations, concentrations (EDP, EDT, Cologne), stock indicators, and houses the add-to-cart operations. |
-| `cart.php` | The user's active shopping cart. Displays current items, prices, and handles item additions, deletions, and direct quantity changes. |
-| `checkout.php` | Billing and shipping portal. Gathers demographic information and initializes the secure payment gateway token logic. |
+| `cart.php` | The user's active shopping cart. Displays current items, prices, handles quantity updates, and processes promotional discount codes (e.g., WELCOME10) with real-time UI validation. |
+| `checkout.php` | Billing and shipping portal. Calculates proportional discount distributions across line items and initializes the secure Stripe payment gateway session. |
 | `success.php` | Post-payment processor. Confirms transaction variables, updates inventory stocks, initiates the PDF invoice generator via FPDF, attaches the document to PHPMailer, and sends out transaction summaries. |
 | `profile.php` | Customer dashboard. Exposes details and allows logged-in users to audit their order histories and payment records. |
 | `about.php` | The brand statement page, describing ScentAura's core philosophies and story. |

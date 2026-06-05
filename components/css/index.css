@@ -695,3 +695,20 @@ footer {
     transform: translateY(0);
   }
 }
+
+/* Gold Button for Finder */
+.gold-btn {
+  background-color: #c9933b;
+  border-color: #c9933b;
+  margin-left: 15px;
+  transition: all 0.3s ease;
+}
+.gold-btn a {
+  color: white !important;
+}
+.gold-btn:hover {
+  background-color: #b5822e;
+  border-color: #b5822e;
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(201, 147, 59, 0.4);
+}
