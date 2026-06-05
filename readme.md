@@ -308,7 +308,7 @@ STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
 # SMTP Configuration (PHPMailer Email Client)
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USER=scentaura25@gmail.com
+SMTP_USER=your_email
 SMTP_PASS="your_google_app_password"
 SMTP_SECURE=tls
 ```
