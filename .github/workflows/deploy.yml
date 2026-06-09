@@ -87,10 +87,11 @@ jobs:
           task-definition: ${{ steps.render-task-def.outputs.task-definition }}
           service: scentaura-service
           cluster: scentaura-cluster
-          wait-for-service-stability: false
+          wait-for-service-stability: true
 
       - name: Smoke tests
         run: |
+          sleep 30
           BASE_URL="http://13.205.223.224"
 
           check_url() {
