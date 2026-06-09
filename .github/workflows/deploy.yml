@@ -91,7 +91,7 @@ jobs:
 
       - name: Smoke tests
         run: |
-          BASE_URL="http://13.203.156.238"
+          BASE_URL="http://13.205.223.224"
 
           check_url() {
             STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$1")
